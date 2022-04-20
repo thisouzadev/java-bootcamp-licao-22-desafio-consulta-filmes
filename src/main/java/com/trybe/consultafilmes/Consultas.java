@@ -63,7 +63,12 @@ public class Consultas {
    * </p>
    */
   public List<Filme> filmesEmQuePeloMenosUmDiretorAtuouMaisRecentesPrimeiro() {
-    return null; // TODO: Implementar.
+    List<Filme> diretoresAtores = filmes.stream()
+        .filter(
+            filme -> filme.diretores.stream().anyMatch(diretor -> filme.atores.contains(diretor)))
+        .sorted(Comparator.comparing(Filme::getAnoDeLancamento).reversed()).distinct()
+        .collect(Collectors.toList());
+    return diretoresAtores;
   }
 
   /**

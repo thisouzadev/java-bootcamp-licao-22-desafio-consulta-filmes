@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 
 public class Filme {
 
+  public int getAnoDeLancamento() {
+    return anoDeLancamento;
+  }
+
   public final String titulo;
   public final int anoDeLancamento;
   public final Set<String> categorias;

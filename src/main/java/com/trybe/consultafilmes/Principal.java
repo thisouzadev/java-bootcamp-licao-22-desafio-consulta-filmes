@@ -12,10 +12,16 @@ public class Principal {
    */
   public static void main(String[] args) {
     Consultas consultas = new Consultas(Filmes.todos());
+
     Set<String> resultados = consultas.atoresQueInterpretaramSiProprios();
     System.out.println(resultados);
+
     List<String> atores =
         consultas.atoresQueAtuaramEmFilmesDoDiretorEmOrdemAlfabetica("Sylvester Stallone");
     System.out.println(atores);
+
+    List<Filme> diretoresAtores =
+        consultas.filmesEmQuePeloMenosUmDiretorAtuouMaisRecentesPrimeiro();
+    System.out.println(diretoresAtores);
   }
 }
