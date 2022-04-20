@@ -1,7 +1,5 @@
 package com.trybe.consultafilmes;
 
-import static java.util.Collections.emptyList;
-import static java.util.Collections.emptyMap;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
@@ -31,8 +29,7 @@ public class Consultas {
     Set<String> atores =
         filmes.stream().flatMap(filme -> filme.atoresPorPersonagem.entrySet().stream())
             .filter(elemento -> elemento.getValue().contains(elemento.getKey()))
-            .sorted(Comparator.comparing(Map.Entry::getKey)).map(Map.Entry::getKey)
-            .collect(Collectors.toSet());
+            .map(Map.Entry::getKey).collect(Collectors.toSet());
     return atores;
   }
 
@@ -48,7 +45,11 @@ public class Consultas {
    * </p>
    */
   public List<String> atoresQueAtuaramEmFilmesDoDiretorEmOrdemAlfabetica(String diretor) {
-    return emptyList(); // TODO: Implementar.
+    List<String> atores = filmes.stream().filter(filme -> filme.diretores.contains(diretor))
+        .flatMap(filme -> filme.atores.stream()).sorted(Comparator.comparing(String::toString))
+        .distinct().collect(Collectors.toList());
+
+    return atores;
   }
 
   /**
@@ -62,7 +63,7 @@ public class Consultas {
    * </p>
    */
   public List<Filme> filmesEmQuePeloMenosUmDiretorAtuouMaisRecentesPrimeiro() {
-    return emptyList(); // TODO: Implementar.
+    return null; // TODO: Implementar.
   }
 
   /**
@@ -75,6 +76,6 @@ public class Consultas {
    * </p>
    */
   public Map<String, Set<Filme>> filmesLancadosNoAnoAgrupadosPorCategoria(int ano) {
-    return emptyMap(); // TODO: Implementar (bônus).
+    return null; // TODO: Implementar (bônus).
   }
 }

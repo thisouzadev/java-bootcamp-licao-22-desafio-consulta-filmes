@@ -1,5 +1,6 @@
 package com.trybe.consultafilmes;
 
+import java.util.List;
 import java.util.Set;
 
 public class Principal {
@@ -13,5 +14,8 @@ public class Principal {
     Consultas consultas = new Consultas(Filmes.todos());
     Set<String> resultados = consultas.atoresQueInterpretaramSiProprios();
     System.out.println(resultados);
+    List<String> atores =
+        consultas.atoresQueAtuaramEmFilmesDoDiretorEmOrdemAlfabetica("Sylvester Stallone");
+    System.out.println(atores);
   }
 }
