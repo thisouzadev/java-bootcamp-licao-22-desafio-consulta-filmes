@@ -1,6 +1,7 @@
 package com.trybe.consultafilmes;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Principal {
@@ -23,5 +24,9 @@ public class Principal {
     List<Filme> diretoresAtores =
         consultas.filmesEmQuePeloMenosUmDiretorAtuouMaisRecentesPrimeiro();
     System.out.println(diretoresAtores);
+
+    Map<String, Set<Filme>> filmeCategoria =
+        consultas.filmesLancadosNoAnoAgrupadosPorCategoria(1979);
+    System.out.println(filmeCategoria);
   }
 }

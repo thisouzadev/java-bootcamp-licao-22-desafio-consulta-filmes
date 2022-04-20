@@ -2,6 +2,7 @@ package com.trybe.consultafilmes;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -81,6 +82,21 @@ public class Consultas {
    * </p>
    */
   public Map<String, Set<Filme>> filmesLancadosNoAnoAgrupadosPorCategoria(int ano) {
-    return null; // TODO: Implementar (bônus).
+    HashMap<String, Set<Filme>> filmesPorCategoria = new HashMap<String, Set<Filme>>();
+
+    List<Filme> filmesAno =
+        filmes.stream().filter(filme -> filme.anoDeLancamento == ano).collect(Collectors.toList());
+
+    List<String> categorias = filmesAno.stream().flatMap(filme -> filme.categorias.stream())
+        .distinct().collect(Collectors.toList());
+
+    for (String categoria : categorias) {
+      Set<Filme> filmesCategoria = filmesAno.stream()
+          .filter(filme -> filme.categorias.contains(categoria)).collect(Collectors.toSet());
+
+      filmesPorCategoria.put(categoria, filmesCategoria);
+    }
+
+    return filmesPorCategoria;
   }
 }
